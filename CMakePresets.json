@@ -1,17 +1,63 @@
 {
-    "version": 8,
+    "version": 3,
     "configurePresets": [
         {
-            "name": "GCC 13.3.0 x86_64-linux-gnu",
-            "displayName": "GCC 13.3.0 x86_64-linux-gnu",
-            "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+            "name": "linux-debug",
+            "displayName": "Linux Debug",
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-                "CMAKE_C_COMPILER": "/usr/bin/gcc",
-                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
                 "CMAKE_BUILD_TYPE": "Debug",
-                "DEAL_II_DIR": "/usr/share/cmake/deal.II"
+                "CMAKE_CXX_COMPILER": "/usr/bin/g++",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioSettings/CMake/1.0": {
+                    "intelliSenseMode": "linux-gcc-x64",
+                    "intelliSenseOptions": {
+                        "useCompilerDefaults": true,
+                        "additionalCompilerArgs": [
+                            "-std=gnu++20",
+                            "-isystem",
+                            "/usr/include/c++/13",
+                            "-isystem",
+                            "/usr/include/x86_64-linux-gnu/c++/13",
+                            "-isystem",
+                            "/usr/include/c++/13/backward",
+                            "-isystem",
+                            "/usr/lib/gcc/x86_64-linux-gnu/13/include",
+                            "-isystem",
+                            "/usr/local/include",
+                            "-isystem",
+                            "/usr/include/x86_64-linux-gnu",
+                            "-isystem",
+                            "/usr/include",
+                            "-isystem",
+                            "/usr/include/deal.II"
+                        ]
+                    }
+                },
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
+                    "copyAdditionalIncludeDirectoriesList": [
+                        "/usr/include/c++/13",
+                        "/usr/include/x86_64-linux-gnu/c++/13",
+                        "/usr/include/c++/13/backward",
+                        "/usr/lib/gcc/x86_64-linux-gnu/13/include",
+                        "/usr/local/include",
+                        "/usr/include/x86_64-linux-gnu",
+                        "/usr/include",
+                        "/usr/include/deal.II",
+                        "/usr/include/tbb",
+                        "/usr/include/oneapi"
+                    ]
+                }
             }
         }
     ]
