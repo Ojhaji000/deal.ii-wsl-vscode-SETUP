@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.10) 
-find_package(deal.II 9.5.1 REQUIRED)
+find_package(deal.II 9.6.0 REQUIRED)
 # or deal.II 9.6.0 REQUIRED
 deal_ii_initialize_cached_variables()
 

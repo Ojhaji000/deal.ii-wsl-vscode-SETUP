@@ -21,42 +21,9 @@
                 "microsoft.com/VisualStudioSettings/CMake/1.0": {
                     "intelliSenseMode": "linux-gcc-x64",
                     "intelliSenseOptions": {
-                        "useCompilerDefaults": true,
-                        "additionalCompilerArgs": [
-                            "-std=gnu++20",
-                            "-isystem",
-                            "/usr/include/c++/13",
-                            "-isystem",
-                            "/usr/include/x86_64-linux-gnu/c++/13",
-                            "-isystem",
-                            "/usr/include/c++/13/backward",
-                            "-isystem",
-                            "/usr/lib/gcc/x86_64-linux-gnu/13/include",
-                            "-isystem",
-                            "/usr/local/include",
-                            "-isystem",
-                            "/usr/include/x86_64-linux-gnu",
-                            "-isystem",
-                            "/usr/include",
-                            "-isystem",
-                            "/usr/include/deal.II"
-                        ]
+                        "useCompilerDefaults": true
+
                     }
-                },
-                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}",
-                    "copyAdditionalIncludeDirectoriesList": [
-                        "/usr/include/c++/13",
-                        "/usr/include/x86_64-linux-gnu/c++/13",
-                        "/usr/include/c++/13/backward",
-                        "/usr/lib/gcc/x86_64-linux-gnu/13/include",
-                        "/usr/local/include",
-                        "/usr/include/x86_64-linux-gnu",
-                        "/usr/include",
-                        "/usr/include/deal.II",
-                        "/usr/include/tbb",
-                        "/usr/include/oneapi"
-                    ]
                 }
             }
         }
