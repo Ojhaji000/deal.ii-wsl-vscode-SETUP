@@ -3,9 +3,9 @@ find_package(deal.II 9.6.0 REQUIRED)
 # or deal.II 9.6.0 REQUIRED
 deal_ii_initialize_cached_variables()
 
-project(step1 CXX)
+project(main CXX)
 
-add_executable(step1 step1.cc)
-target_compile_features(step1 PRIVATE cxx_std_20)
+add_executable(main main.cc)
+target_compile_features(main PRIVATE cxx_std_20)
 
-deal_ii_setup_target(step1)
+deal_ii_setup_target(main)
