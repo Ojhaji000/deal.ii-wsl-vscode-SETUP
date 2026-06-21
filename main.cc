@@ -1,6 +1,9 @@
 #include <deal.II/base/point.h>
 #include <optional>
-
+#include <iostream>
+#include <utility>
+using namespace dealii;
+using namespace std;
 class Load {
 public:
 	Load(const dealii::Point<2>& position, double force_x, double force_y)
@@ -45,6 +48,44 @@ public:
 
 	bool operator==(const StrNode& other) const {
 		return this->position == other.position;
+	}
+};
+
+class Line {
+	public:
+	Point<2> Start;
+	Point<2> End;
+		Line(const Point<2>& start, const Point<2>& end)
+			: Start(start), End(end) {	}
+
+		double Length() const {
+			Tensor<1,2> diff = this->End - this->Start;
+			double length = sqrt(diff[0]* diff[0] + diff[1] * diff[1]);	
+			return length;
+		}
+};
+
+class StrBar {
+
+public:
+
+	int id;
+	StrNode  StartNode;
+	StrNode  EndNode;
+	double CrossSectionArea;
+	double YoungsModulus;
+
+
+	StrBar(int id, const StrNode& StartNode, const StrNode& EndNode)
+			: id(id), StartNode(StartNode), EndNode(EndNode) {		}
+
+	Line Geometry() const {
+		return { StartNode.position, EndNode.position };
+	}
+
+	double Length() const {
+		Line line = this->Geometry();	
+		return line.Length();
 	}
 };
 
