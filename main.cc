@@ -2,8 +2,13 @@
 #include <optional>
 #include <iostream>
 #include <utility>
+#include <ctime>
+#include <iomanip>
+#include <cantera/core.h>
+
 using namespace dealii;
 using namespace std;
+using namespace Cantera;
 class Load {
 public:
 	Load(const dealii::Point<2>& position, double force_x, double force_y)
@@ -88,8 +93,40 @@ public:
 		return line.Length();
 	}
 };
+void simple_demo()
+{
+	// Create a new Solution object
+	auto sol = newSolution("h2o2.yaml");
+	auto gas = sol->thermo();
+
+	// Set the thermodynamic state by specifying T (500 K) P (2 atm) and the mole
+	// fractions. Note that the mole fractions do not need to sum to 1.0 - they will
+	// be normalized internally. Also, the values for any unspecified species will be
+	// set to zero.
+	gas->setState_TPX(500.0, 2.0 * OneAtm, "H2O:1.0, H2:8.0, AR:1.0");
+
+	// Print a summary report of the state of the gas.
+	std::cout << gas->report() << std::endl;
+}
 
 int main() {
+	cout << "Value of __cplusplus"<<__cplusplus<<"\n";
+	auto now = chrono::system_clock::now();
+	time_t currentTime = chrono::system_clock::to_time_t(now);
+	tm* localTime = localtime(&currentTime);
+	cout<<"Current Date and Time: "
+		<<put_time(localTime, "%Y-%m-%d %H:%M:%S %Z")
+		<<"\n";
+
 	std::cout << "Structural Node Test\n";
+
+
+	try {
+		simple_demo();
+	}
+	catch (CanteraError& err) {
+		std::cout << err.what() << std::endl;
+		return 1;
+	}
 	return 0;
 }
